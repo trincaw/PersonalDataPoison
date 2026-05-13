@@ -1,0 +1,36 @@
+# Desktop profile — realistic desktop browsing targeting data collectors
+browser:
+  browser_type: "chromium"
+  headless: false
+  block_trackers: true
+
+session:
+  min_pages: 5
+  max_pages: 15
+  mode: "mixed"  # alternates single and multi-platform sessions
+
+timing:
+  circadian:
+    wake_hour: 8
+    sleep_hour: 23
+  inter_page_mean: 8.0
+  inter_page_sigma: 3.0
+  inter_session_mean: 600.0
+  inter_session_sigma: 200.0
+  inter_platform_mean: 45.0
+  inter_platform_sigma: 20.0
+
+# Desktop users heavily use Google, YouTube, Amazon
+platforms:
+  weights:
+    google: 6.0
+    youtube: 5.0
+    amazon: 4.0
+    facebook: 2.0
+    instagram: 2.0
+    linkedin: 3.0
+    twitter: 2.5
+    tiktok: 1.0
+
+behavior:
+  scroll_speed: "medium"

@@ -1,0 +1,37 @@
+# Mobile profile — short sessions, social-heavy, fast scrolling
+browser:
+  browser_type: "chromium"
+  headless: true
+  block_trackers: true
+
+identity:
+  default_locale: "it-IT"
+
+session:
+  min_pages: 2
+  max_pages: 6
+  mode: "single_platform"
+
+timing:
+  circadian:
+    wake_hour: 7
+    sleep_hour: 1
+  inter_page_mean: 3.0
+  inter_page_sigma: 1.5
+  inter_session_mean: 180.0
+  inter_session_sigma: 90.0
+
+# Mobile users are heavy on social + short video platforms
+platforms:
+  weights:
+    google: 3.0
+    youtube: 4.0
+    instagram: 6.0
+    facebook: 3.0
+    tiktok: 7.0
+    linkedin: 0.5
+    twitter: 3.0
+    amazon: 2.0
+
+behavior:
+  scroll_speed: "fast"

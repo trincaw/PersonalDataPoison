@@ -1,0 +1,25 @@
+app:
+  environment: development
+  debug: true
+
+browser:
+  headless: false
+  locale: it-IT
+  timezone: Europe/Rome
+
+identity:
+  persistence: true
+  rotation_days: 30
+
+network:
+  dns_cache: true
+  retry_attempts: 3
+
+timing:
+  enabled: true
+  think_time:
+    mean: 2.0
+    sigma: 1.0
+
+logging:
+  level: INFO

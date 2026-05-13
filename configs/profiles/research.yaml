@@ -1,0 +1,37 @@
+# Research profile — deep browsing, long dwell times, professional platforms
+browser:
+  browser_type: "firefox"
+  headless: true
+  block_trackers: true
+
+session:
+  min_pages: 8
+  max_pages: 25
+  mode: "multi_platform"
+
+timing:
+  circadian:
+    wake_hour: 9
+    sleep_hour: 22
+    peak_hour: 15
+  inter_page_mean: 15.0
+  inter_page_sigma: 5.0
+  inter_session_mean: 900.0
+  inter_session_sigma: 300.0
+  inter_platform_mean: 60.0
+  inter_platform_sigma: 25.0
+
+# Research users: heavy Google/YouTube, some LinkedIn, less social
+platforms:
+  weights:
+    google: 8.0
+    youtube: 5.0
+    linkedin: 4.0
+    twitter: 2.0
+    amazon: 2.0
+    instagram: 0.5
+    facebook: 0.5
+    tiktok: 0.3
+
+behavior:
+  scroll_speed: "slow"

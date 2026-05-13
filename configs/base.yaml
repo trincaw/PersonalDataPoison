@@ -1,0 +1,112 @@
+general:
+  project_name: "personal-data-poison"
+  data_dir: "data"
+  log_level: "INFO"
+
+identity:
+  default_locale: "it-IT"
+  pool_size: 10
+  rotation_policy: "scored"  # round_robin | random | scored
+
+browser:
+  browser_type: "chromium"  # chromium | firefox | webkit
+  headless: true
+  block_trackers: true
+  disable_gpu: false
+  profile_storage_dir: "data/browser_profiles"
+
+network:
+  proxy:
+    enabled: false
+    proxies: []
+    max_fails: 3
+  dns:
+    use_doh: true
+    rotate: true
+  transport:
+    timeout: 30
+    max_connections: 10
+    verify_ssl: true
+
+timing:
+  circadian:
+    wake_hour: 7
+    sleep_hour: 23
+    peak_hour: 14
+    noise: 0.1
+    weekend_shift_hours: 1.5
+  inter_page_mean: 5.0
+  inter_page_sigma: 2.0
+  inter_session_mean: 300.0
+  inter_session_sigma: 120.0
+  inter_platform_mean: 30.0
+  inter_platform_sigma: 15.0
+
+session:
+  min_pages: 3
+  max_pages: 12
+  max_sessions: 0       # 0 = continuous
+  mode: "mixed"          # single_platform | multi_platform | mixed
+
+# === Platform Targeting ===
+# Each platform corresponds to a data-collecting company.
+# Weights control how often each platform is selected.
+platforms:
+  locale: "it"
+  enabled:
+    - google
+    - youtube
+    - instagram
+    - facebook
+    - tiktok
+    - linkedin
+    - twitter
+    - amazon
+
+  # Higher weight = selected more often. Adjust to focus on specific targets.
+  weights:
+    google: 5.0       # Most pervasive tracker
+    youtube: 4.0       # Video recommendation engine
+    instagram: 3.0     # Meta interest graph
+    facebook: 2.5      # Meta social graph
+    tiktok: 3.0        # ByteDance FYP algorithm
+    linkedin: 1.5      # Microsoft professional profiling
+    twitter: 2.0       # X interest/ad graph
+    amazon: 2.5        # Purchase intent profiling
+
+  # Per-platform overrides (merged with global config)
+  platform_configs:
+    google:
+      locale: "it"
+    amazon:
+      locale: "it"
+
+behavior:
+  scroll_speed: "medium"  # slow | medium | fast
+
+storage:
+  database_path: "data/pdp.db"
+  identities_dir: "data/identities"
+
+# === Account Management ===
+# Credentials are stored AES-encrypted in accounts_dir.
+# Set PDP_ACCOUNTS_PASSPHRASE env var to unlock.
+accounts:
+  enabled: false          # Set to true when accounts are configured
+  accounts_dir: "data/accounts"
+  sessions_dir: "data/sessions"
+  # Login behavior
+  login_retry_count: 2
+  save_sessions: true     # Persist cookies after successful login
+  # Per-platform login settings (can disable login for specific platforms)
+  platform_login:
+    google: true
+    youtube: true          # Uses Google auth
+    instagram: true
+    facebook: true
+    tiktok: true
+    linkedin: true
+    twitter: true
+    amazon: true
+
+plugins: []
